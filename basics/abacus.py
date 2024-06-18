@@ -47,9 +47,12 @@ class Abacus:
                 questions.append(next_number)
                 current_value += next_number
             elif sign == 0:  # Subtraction
-                next_number = random.randint(1, current_value // random.randint(2, number_of_questions))
-                questions.append(-next_number)
-                current_value -= next_number
+                if current_value > 1:
+                    next_number = random.randint(1, max(1, current_value // random.randint(2, number_of_questions)))
+                    questions.append(-next_number)
+                    current_value -= next_number
+                else:
+                    questions.append(0)
 
             answers.append(current_value)
 
@@ -105,4 +108,4 @@ class Abacus:
 # Example usage
 if __name__ == "__main__":
     abacus = Abacus()
-    abacus.run(frequency=5, number_of_questions=5, digit=3, operation="both")
+    abacus.run(frequency=5, number_of_questions=5, digit=1, operation="both")
