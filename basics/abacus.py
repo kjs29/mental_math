@@ -100,7 +100,7 @@ class Abacus:
                     file.write(f"\nquestion {i + 1}.\n")
                 questions, answers = self.generate_questions(questions_per_run, digit, operation)
                 self.write_to_file(questions, answers)
-                print(f"Question {i + i}: {questions} / Answer: {answers}")
+                print(f"Question {i + 1}: {questions} / Answer: {answers}")
         except IOError as e:
             print(f"Error while writing to file: {e}")
 
