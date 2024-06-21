@@ -83,24 +83,24 @@ class Abacus:
         except IOError as e:
             print(f"Error while writing to file: {e}")
 
-    def run(self, frequency=1, number_of_questions=5, digit=2, operation="both"):
+    def run(self, runs=1, questions_per_run=5, digit=2, operation="both"):
         """
         Runs the abacus for a specified number of times and logs the results.
         
-        :param frequency: Number of times to run the abacus.
-        :param number_of_questions: Number of questions per run.
+        :param runs: Number of times to run the abacus.
+        :param questions_per_run: Number of questions per run.
         :param digit: Number of digits for each generated number.
         :param operation: Type of operation ("plus", "minus", or "both").
         """
         try:
             self.write_log_header()
 
-            for i in range(frequency):
+            for i in range(runs):
                 with open(self.log_file, "a") as file:
-                    file.write(f"\n{i + 1}.\n")
-                questions, answers = self.generate_questions(number_of_questions, digit, operation)
+                    file.write(f"\nquestion {i + 1}.\n")
+                questions, answers = self.generate_questions(questions_per_run, digit, operation)
                 self.write_to_file(questions, answers)
-                print(f"Questions: {questions} / Answer: {answers}")
+                print(f"Question {i + i}: {questions} / Answer: {answers}")
         except IOError as e:
             print(f"Error while writing to file: {e}")
 
@@ -108,4 +108,4 @@ class Abacus:
 # Example usage
 if __name__ == "__main__":
     abacus = Abacus()
-    abacus.run(frequency=5, number_of_questions=5, digit=1, operation="both")
+    abacus.run(runs=5, questions_per_run=5, digit=3, operation="both")
